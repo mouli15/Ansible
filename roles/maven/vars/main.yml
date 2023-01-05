@@ -1,0 +1,4 @@
+---
+# vars file for maven
+MavenVersion: 3.8.7
+maven_download_dir: /home/ec2-user/softwares
