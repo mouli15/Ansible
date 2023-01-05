@@ -1,0 +1,16 @@
+---
+- name: Chceking the version
+  debug:
+    msg: "Maven version is {{ MavenVersion }}"
+- name: Create maven download dir
+  file:
+    state: directory
+    dest: '{{ maven_download_dir }}'
+- name: Downloading Maven Binaries
+  get_url:
+    url: "https://dlcdn.apache.org/maven/maven-3/{{ MavenVersion }}/binaries/apache-maven-{{ MavenVersion }}-bin.tar.gz"
+    dest: "{{ maven_download_dir }}/apache-maven-{{ MavenVersion }}-bin.tar.gz"
+- name: unzip the tar binary
+  unarchive:
+    src: /home/ec2-user/softwares/apache-maven-3.8.7-bin.tar.gz
+    dest: /home/ec2-user/softwares
