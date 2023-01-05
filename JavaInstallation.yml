@@ -1,0 +1,31 @@
+---
+- name: Java installation
+  hosts: localhost
+  vars:
+    name: MOulika
+  tasks:
+    - name: Download the JDK binaries
+      get_url:
+        url: https://download.java.net/java/GA/jdk18.0.2.1/db379da656dc47308e138f21b33976fa/1/GPL/openjdk-18.0.2.1_linux-x64_bin.tar.gz
+        dest: /home/ec2-user/java/openjdk-18.0.2.1_linux-x64_bin.tar.gz
+    - name: unzip the downloaded jdk binaries
+      unarchive:
+        src: /home/ec2-user/java/openjdk-18.0.2.1_linux-x64_bin.tar.gz
+        dest: /home/ec2-user/java
+    - name:  Set the JAVA_HOME in /etc/profile file
+      lineinfile:
+        dest: /etc/profile
+        state: present
+        regexp: "^(export PATH=)"
+        line: "export PATH=$PATH:/home/ec2-user/java/jdk-18.0.2.1/bin"
+        owner: root
+    - name: Reload /etc/profile file
+      shell: source /etc/profile
+    - name: Vaildate whether the path got set or not
+      command: "java --version"
+      register: javaversion
+    - name: java version
+      debug:
+        msg:
+        - "{{ javaversion.stdout }}"
+        - "{{ name }}"
