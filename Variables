@@ -1,0 +1,14 @@
+---
+- name: Java installation
+  hosts: all
+  vars:
+    foo:
+      first: "one"
+      second: "two"
+  tasks:
+    - name: Ansible | Print a variable
+      debug:
+        msg:
+          - "The operating system is '{{ ansible_distribution }}' "
+          - "{{foo.first}}"
+          - "{{foo.second}}"
