@@ -1,0 +1,22 @@
+#copy module usage: 
+#If the folder doesn't exists while copying the file than it will create the folder automatically and copies the file
+#When copying the file need to provide the exact path and to do remote copy use remote_src: yes variable
+
+---
+- name: copy module usage
+  hosts: all
+  tasks:
+    - name: Copying Files from Local to Remote
+      copy:
+        src: "/home/ec2-user/ansible-POC/test.yml"
+        dest: "/home/ec2-user/copy"
+    - name: Copying Directories from Local to Remote
+      copy:
+        src: "/home/ec2-user/ansible-POC"
+        dest: "/home/ec2-user/copyfolder/ansible-POC"
+    - name: Copying Files from Remote to Remote
+      copy:
+        src: "/home/ec2-user/copyfolder/ansible-POC"
+        dest: "/home/ec2-user"
+        remote_src: yes
+
