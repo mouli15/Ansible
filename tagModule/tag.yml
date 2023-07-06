@@ -1,0 +1,29 @@
+---
+- name: tag module
+  hosts: localhost
+  vars:
+    att: welcome to variables
+  tasks:
+  - name: tag module usage
+    debug:
+      msg: "welcome to tags"
+    tags:
+    - welcome
+  - name: Display variables
+    debug:
+      msg:
+      - "{{ att }}"
+    tags:
+    - var
+  - name: always tag
+    debug:
+      msg:
+      - "This is always tag"
+    tags:
+    - always
+  - name: never tag
+    debug:
+      msg:
+      - "This is never tag"
+    tags: [never,vartest]
+
