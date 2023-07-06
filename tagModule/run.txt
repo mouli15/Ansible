@@ -1,0 +1,106 @@
+To run with tags
+
+ansible-playbook mainplay.yml --tags tag1
+ansible-playbook tag.yml --tags "welcome"
+******************************************************************************************************************************************
+ansible-playbook tag.yml --tags "welcome,var"
+Output:
+[ec2-user@ip-172-31-9-89 tag]$ ansible-playbook tag.yml --tags "welcome,var"
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+playbook: tag.yml
+
+  play #1 (localhost): tag module       TAGS: []
+      TASK TAGS: [always, never, var, vartest, welcome]
+[ec2-user@ip-172-31-9-89 tag]$ ansible-playbook tag.yml --tags "welcome,var"
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+PLAY [tag module] ******************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [tag module usage] ************************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": "welcome to tags"
+}
+
+TASK [Display variables] ***********************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": [
+        "welcome to variables"
+    ]
+}
+
+TASK [always tag] ******************************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": [
+        "This is always tag"
+    ]
+}
+
+PLAY RECAP *************************************************************************************************************************************************************************************
+localhost                  : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+******************************************************************************************************************************************
+ansible-playbook tag.yml --tags "welcome,var" --list-tasks
+Output:
+[ec2-user@ip-172-31-9-89 tag]$ ansible-playbook tag.yml --tags "welcome,var" --list-tasks
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+playbook: tag.yml
+
+  play #1 (localhost): tag module       TAGS: []
+    tasks:
+      tag module usage  TAGS: [welcome]
+      Display variables TAGS: [var]
+      always tag        TAGS: [always]
+[ec2-user@ip-172-31-9-89 tag]$
+******************************************************************************************************************************************
+ansible-playbook tag.yml --list-tags
+Output:
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+playbook: tag.yml
+
+  play #1 (localhost): tag module       TAGS: []
+      TASK TAGS: [always, never, var, vartest, welcome]
+
+******************************************************************************************************************************************
+ansible-playbook tag.yml --tags "never"
+Output:
+[ec2-user@ip-172-31-9-89 tag]$ ansible-playbook tag.yml --tags "never"
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+PLAY [tag module] ******************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [always tag] ******************************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": [
+        "This is always tag"
+    ]
+}
+
+TASK [never tag] *******************************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": [
+        "This is never tag"
+    ]
+}
+
+PLAY RECAP *************************************************************************************************************************************************************************************
+localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+
+
+
