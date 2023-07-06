@@ -1,0 +1,8 @@
+---
+- name: "include_task usage with tags"
+  hosts: localhost
+  tasks:
+  - name: include task
+    include_tasks: includeTask.yml
+    tags:
+      - tag1
