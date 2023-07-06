@@ -104,6 +104,7 @@ localhost                  : ok=3    changed=0    unreachable=0    failed=0    s
 ansible-playbook tag.yml --tags untagged
 ansible-playbook tag.yml --tags tagged
 ansible-playbook tag.yml --tags all
+ansible-playbook tag.yml --skip-tags var
 
 
 
