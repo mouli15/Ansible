@@ -1,0 +1,15 @@
+- name: tagged task
+  debug:
+    msg: "tagged task"
+  tags:
+    tag1
+- name: untagged task
+  debug:
+    msg:
+      - "untagged task"
+- name: tagged second task
+  debug:
+    msg:
+      - "tagged second task"
+  tags:
+    - tag1
