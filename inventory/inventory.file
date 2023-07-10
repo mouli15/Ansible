@@ -1,0 +1,5 @@
+// alias name for server
+[webservers]
+anshost1 ansible_host=172.31.7.207
+[ipservers]
+172.31.11.154
