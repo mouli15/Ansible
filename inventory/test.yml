@@ -1,7 +1,7 @@
 ---
 - name: Java installation
   hosts:
-    webservers
+    webservers/anshost1
     ipservers
   vars:
     foo:
