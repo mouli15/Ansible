@@ -1,0 +1,6 @@
+//grouping the servers
+[webservers]
+172.31.7.207
+
+[ipservers]
+172.31.11.154
