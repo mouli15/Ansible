@@ -1,0 +1,3 @@
+ansible-vault encrypt name
+ansible-vault decrypt name
+ansible-vault encrypt --vault-id prd@prompt name
