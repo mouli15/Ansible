@@ -12,3 +12,8 @@
           - "The operating system is '{{ ansible_distribution }}' "
           - "{{foo.first}}"
           - "{{foo.second}}"
+#ansible-playbook Variables.yml -e @vars.yml(variables playbook name)
+cd /etc/ansible/ansible.cfg
+to include files
+vars_files:
+  var.yml
